@@ -3,3 +3,4 @@ geckodriver*
 superlists/__pycache__/*
 *.pyc
 db.sqlite3
+static/*
