@@ -1,6 +1,6 @@
 from tkinter import EW
 from django.shortcuts import render, redirect
-from .models import Item
+from .models import Item, List
 from django.http import HttpResponse
 
 # Create your views here.
@@ -12,5 +12,6 @@ def view_list(request):
     return render(request, 'list.html', {'items': items})
 
 def new_list(request):
-    Item.objects.create(text=request.POST['item_text'])
+    list_ = List.objects.create()
+    Item.objects.create(text=request.POST['item_text'], list=list_)
     return redirect('/lists/the-only-list-in-the-world/')
