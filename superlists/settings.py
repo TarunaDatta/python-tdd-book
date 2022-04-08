@@ -25,7 +25,7 @@ SECRET_KEY = 'k=pfd*bi_(6&3-4$8hl+ni3)+clod2-pqvk(eq+yn(*aq_=&6a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
