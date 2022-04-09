@@ -3,13 +3,13 @@ Description=Gunicorn server for DOMAIN
 
 [Service]
 Restart=on-failure
-User=catsrule
-WorkingDirectory=/home/catsrule/sites/DOMAIN
-EnvironmentFile=/home/catsrule/sites/DOMAIN/.env
+User=tarunadatta
+WorkingDirectory=/home/tarunadatta/sites/DOMAIN
+EnvironmentFile=/home/tarunadatta/sites/DOMAIN/.env
 
-ExecStart=/home/catsrule/sites/DOMAIN/virtualenv/bin/gunicorn \
+ExecStart=/home/tarunadatta/sites/DOMAIN/virtualenv/bin/gunicorn \
     --bind unix:/tmp/DOMAIN.socket \
     superlists.wsgi:application
 
 [Install]
-WantedBy=multi-user-target
+WantedBy=multi-user.target
