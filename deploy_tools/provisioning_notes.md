@@ -6,13 +6,15 @@ Provisioning a new site
 * Python 3.6
 * virtualenv + pip
 * Git
+* Tkinter
 
 eg, on Ubuntu
     sudo add-apt-repository ppa:deadsnakes/ppa
     sudo apt-get update
-    sudo apt-get install python3.6 python3.6-venv
+    sudo apt-get install python3.6 python3-venv
     sudo apt-get install nginx
     sudo apt-get install git
+    sudo apt-get install python3-tk
 
 
 ## Nginx Virtual host config
