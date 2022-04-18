@@ -1,6 +1,7 @@
 from .base import FunctionalTest
 from selenium.webdriver.common.keys import Keys
 from unittest import skip
+import time
 
 
 class ItemValidationTest(FunctionalTest):
@@ -49,6 +50,7 @@ class ItemValidationTest(FunctionalTest):
         self.browser.get(self.live_server_url)
         self.get_item_input_box().send_keys("Buy wellies")
         self.get_item_input_box().send_keys(Keys.ENTER)
+        time.sleep(5)
 
         # She accidently tries to enter a duplicate item
         self.get_item_input_box().send_keys("Buy wellies")
@@ -57,5 +59,5 @@ class ItemValidationTest(FunctionalTest):
         # She sees a helpful error message
         self.wait_for(lambda: self.assertEqual(
             self.browser.find_element_by_css_selector('.has-error').text,
-            "You've already got this in your list"
+            "You've already got this item in your list"
         ))
