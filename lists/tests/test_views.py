@@ -186,7 +186,7 @@ class NewListViewIntegratedTest(TestCase):
 
     def test_for_invalid_input_doesnt_save_but_shows_errors(self):
         response = self.client.post("/lists/new", data={'text': ''})
-        self.assertEqual(list.objects.count(), 0)
+        self.assertEqual(List.objects.count(), 0)
         self.assertContains(response, escape(EMPTY_ERROR_MESSAGE))
 
     def test_list_owner_is_saved_if_user_is_authenticated(self):
