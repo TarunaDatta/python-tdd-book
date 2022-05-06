@@ -55,7 +55,6 @@ class LoginTest(FunctionalTest):
 
         # She is now logged out
         self.wait_to_be_logged_out(email=test_email)
-        self.fail()
 
     def wait_for_email(self, test_email, subject):
         if not self.staging_server:
