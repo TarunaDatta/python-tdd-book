@@ -5,4 +5,5 @@ superlists/__pycache__/*
 db.sqlite3
 static/*
 .env
+node_modules/
 functional_tests/screendumps
