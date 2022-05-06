@@ -3,12 +3,14 @@ import os
 from tracemalloc import start
 
 from datetime import datetime
+from django.conf import settings
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.common.keys import Keys
 
-from .server_tools import reset_database
+from .management.commands.create_session import create_pre_authenticated_session
+from .server_tools import reset_database, create_session_on_server
 
 
 MAX_WAIT = 10
@@ -60,6 +62,22 @@ class FunctionalTest(StaticLiveServerTestCase):
             windowid=self._windowid,
             timestamp=timestamp
         )
+
+    def create_pre_authenticated_session(self, email):
+        if self.staging_server:
+            session_key = create_session_on_server(self.staging_server, email)
+        else:
+            session_key = create_pre_authenticated_session(email)
+        
+        # To set a cookie we first need to visit the domain
+        # 404 pages load the quickest
+        self.browser.get(self.live_server_url + "/404_no_such_url/")
+        self.browser.add_cookie(dict(
+            name=settings.SESSION_COOKIE_NAME,
+            value=session_key,
+            path="/",
+        ))
+
 
     def wait(fn):
         def modified_fn(*args, **kwargs):
