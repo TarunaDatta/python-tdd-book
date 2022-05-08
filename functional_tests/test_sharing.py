@@ -1,3 +1,4 @@
+import time
 from selenium import webdriver
 
 
@@ -22,6 +23,7 @@ class SharingTest(FunctionalTest):
         # Her friend Oni is also hanging out on the lists site
         oni_browser = webdriver.Firefox()
         self.addCleanup(lambda: quit_if_possible(oni_browser))
+        self.browser = oni_browser
         self.create_pre_authenticated_session("oniciferous@example.com")
 
         # Edith goes to the homepage and starts a list
@@ -43,6 +45,7 @@ class SharingTest(FunctionalTest):
 
         # Oni now goes to the lists page with his browser
         self.browser = oni_browser
+        time.sleep(2)
         MyListsPage(self).go_to_my_lists_page()
 
         # He sees Edith's list in there
